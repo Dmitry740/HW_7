@@ -11,7 +11,7 @@ void print(const std::vector<std::string>& queue) {
   if (queue.size() > 0) {
     auto start = std::chrono::high_resolution_clock::now();
 
-    for (auto q = 0; q != queue.size(); ++q) {
+    for (size_t q = 0; q != queue.size(); ++q) {
       if (q == 0) {
         auto n = queue[q];
 
