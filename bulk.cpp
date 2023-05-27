@@ -13,7 +13,7 @@ void print(const std::vector<std::string>& queue) {
 
     for (size_t q = 0; q != queue.size(); ++q) {
       if (q == 0) {
-        auto n = queue[q];
+        auto w = queue[q];
 
         auto end = std::chrono::high_resolution_clock::now();
         auto elapsed_ms =
@@ -33,12 +33,9 @@ void print(const std::vector<std::string>& queue) {
       }
     }
   }
-  std::cout << std::endl;
 }
 
 void DynamicCase(State& state, std::vector<std::string>& queue, const int& n) {
-  std::cout << "Enter commands one by one:" << std::endl;
-
   int m{0};
   size_t dyn = 1;
   while (std::cin && state == State::Dynamic) {
@@ -62,16 +59,11 @@ void DynamicCase(State& state, std::vector<std::string>& queue, const int& n) {
       queue.clear();
       m = 0;
       state = State::Static;
-      StaticCase();
+      StaticCase(n);
     }
   }
 }
-
-void StaticCase() {
-  std::cout << "Enter a nember of commands:" << std::endl;
-  int n;
-  std::cin >> n;
-
+void StaticCase(int n) {
   std::vector<std::string> queue;
   State state = State::Static;
 
@@ -83,6 +75,11 @@ void StaticCase() {
     if (m < n && command != "{" && std::cin) {
       queue.push_back(command);
       ++m;
+    }
+    if (m < n && command != "{" && !std::cin) {
+      print(queue);
+      queue.clear();
+      m = 0;
     }
     if (m == n && command != "{") {
       print(queue);
@@ -98,4 +95,5 @@ void StaticCase() {
     }
   }
 }
-void example() { StaticCase(); }
+
+void example(int n) { StaticCase(n); }

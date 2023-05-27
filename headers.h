@@ -7,9 +7,9 @@
 
 enum class State { Static, Dynamic };
 
-void example();
+void example(int n);
 
-void StaticCase();
+void StaticCase(int n);
 
 void DynamicCase(State& state, std::vector<std::string>& queue, const int& n);
 
